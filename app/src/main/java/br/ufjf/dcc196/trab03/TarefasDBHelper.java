@@ -15,11 +15,12 @@ public class TarefasDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        sqLiteDatabase.execSQL(TarefasContract.Tarefas.CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        sqLiteDatabase.execSQL(TarefasContract.Tarefas.DROP_TABLE);
+        onCreate(sqLiteDatabase);
     }
 }

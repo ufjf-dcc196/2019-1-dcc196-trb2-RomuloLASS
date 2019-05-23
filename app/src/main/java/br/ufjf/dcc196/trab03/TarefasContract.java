@@ -9,7 +9,7 @@ public class TarefasContract {
         public static final String TABLE_NAME = "tarefas";
         public static final String COLLUMN_TITULO = "titulo";
         public static final String COLLUMN_DESCRICACAO = "descricacao";
-        public static final String COLLUMN_GRAU = "tarefas";
+        public static final String COLLUMN_GRAU = "grau";
         /*
         public static final String COLLUMN_DATALIMITE = "datalimite";
         public static final String COLLUMN_HORALIMITE = "horalimite";

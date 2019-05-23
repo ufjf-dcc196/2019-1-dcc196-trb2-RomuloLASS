@@ -15,6 +15,7 @@ public class TarefasContract {
         public static final String COLLUMN_HORALIMITE = "horalimite";
         public static final String COLLUMN_DATAATUAL = "dataatual";
         public static final String COLLUMN_HORAATUAL = "horaatual";
+        public static final String COLLUMN TAG = "tag";
         */
         //Criação da tabela
         public static final String CREATE_TABLE = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT, %s TEXT)", TABLE_NAME, _ID, COLLUMN_TITULO, COLLUMN_DESCRICACAO, COLLUMN_GRAU);

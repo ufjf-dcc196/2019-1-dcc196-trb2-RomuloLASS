@@ -21,15 +21,6 @@ public class MainActivity extends AppCompatActivity {
         TarefasDBHelper helper = new TarefasDBHelper(getApplicationContext());
         SQLiteDatabase db = helper.getWritableDatabase();
 
-        /*ContentValues values = new ContentValues();
-        values.put(TarefasContract.Tarefas.COLLUMN_TITULO, "Trabalho");
-        values.put(TarefasContract.Tarefas.COLLUMN_DESCRICACAO, "Trabalho de Lab Android");
-        values.put(TarefasContract.Tarefas.COLLUMN_GRAU, "5");
-        values.put(TarefasContract.Tarefas.COLLUMN_DATAATUAL, "2019-05-23 20:56");
-        values.put(TarefasContract.Tarefas.COLLUMN_DATALIMITE, "2019-06-32 20:56");
-
-        db.insert(TarefasContract.Tarefas.TABLE_NAME, null, values);*/
-
         String[] campos = {
                 TarefasContract.Tarefas.COLLUMN_TITULO,
                 TarefasContract.Tarefas.COLLUMN_DESCRICACAO,
@@ -52,7 +43,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 }

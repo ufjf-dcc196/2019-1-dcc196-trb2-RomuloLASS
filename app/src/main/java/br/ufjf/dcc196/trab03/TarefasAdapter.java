@@ -1,7 +1,5 @@
 package br.ufjf.dcc196.trab03;
 
-import android.app.LauncherActivity;
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
@@ -10,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class TarefasAdapter extends RecyclerView.Adapter<TarefasAdapter.TarefasViewHolder> {
     private Cursor cursor;
@@ -55,7 +51,7 @@ public class TarefasAdapter extends RecyclerView.Adapter<TarefasAdapter.TarefasV
         public TextView txtGrau;
         public TarefasViewHolder(final View itemView) {
             super(itemView);
-            txtTitulo = itemView.findViewById(R.id.txtTitle);
+            txtTitulo = itemView.findViewById(R.id.txtTitulo);
             txtGrau = itemView.findViewById(R.id.txtLevel);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +59,7 @@ public class TarefasAdapter extends RecyclerView.Adapter<TarefasAdapter.TarefasV
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION){
-
+                        listener.onTarefaClickListener(v, position);
                     }
                 }
             });
@@ -74,7 +70,7 @@ public class TarefasAdapter extends RecyclerView.Adapter<TarefasAdapter.TarefasV
         void onTarefaClickListener(View tarefaView, int position);
     }
 
-    public void setOnPlanejamentoClickListener(OnTarefasClickListener listener){
+    public void setOnTarefaClickListener(OnTarefasClickListener listener){
         this.listener = listener;
     }
 }

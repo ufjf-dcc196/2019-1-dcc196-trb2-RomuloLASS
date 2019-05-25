@@ -27,7 +27,18 @@ public class MainActivity extends AppCompatActivity {
                 TarefasContract.Tarefas.COLLUMN_GRAU,
                 TarefasContract.Tarefas.COLLUMN_DATAATUAL,
                 TarefasContract.Tarefas.COLLUMN_DATALIMITE,
+                TarefasContract.Tarefas.COLLUMN_ESTADO,
         };
+
+        /*ContentValues valuesTask = new ContentValues();
+        valuesTask.put(TarefasContract.Tarefas.COLLUMN_TITULO, "Trabalho 03");
+        valuesTask.put(TarefasContract.Tarefas.COLLUMN_DESCRICACAO, "Trabalho do Laboratorio de Dispositiveis moveis");
+        valuesTask.put(TarefasContract.Tarefas.COLLUMN_GRAU, "4");
+        valuesTask.put(TarefasContract.Tarefas.COLLUMN_DATAATUAL, "2019-05-25 10:00");
+        valuesTask.put(TarefasContract.Tarefas.COLLUMN_DATALIMITE, "2019-06-25 18:00");
+        valuesTask.put(TarefasContract.Tarefas.COLLUMN_ESTADO, "A Fazer");
+
+        db.insert(TarefasContract.Tarefas.TABLE_NAME, null, valuesTask);*/
 
         Cursor cursor = db.query(TarefasContract.Tarefas.TABLE_NAME, campos, null, null, null, null, null);
 
@@ -40,6 +51,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, NovaTarefaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        adapter.setOnTarefaClickListener(new TarefasAdapter.OnTarefasClickListener() {
+            @Override
+            public void onTarefaClickListener(View tarefaView, int position) {
+                Intent intent = new Intent(MainActivity.this, TarefasActivity.class);
+                intent.putExtra("posicao", position);
                 startActivity(intent);
             }
         });

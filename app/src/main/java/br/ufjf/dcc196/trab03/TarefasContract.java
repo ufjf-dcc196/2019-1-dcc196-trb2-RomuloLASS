@@ -12,10 +12,10 @@ public class TarefasContract {
         public static final String COLLUMN_GRAU = "grau";
         public static final String COLLUMN_DATALIMITE = "datalimite";
         public static final String COLLUMN_DATAATUAL = "dataatual";
-//        public static final String COLLUMN_TAG = "tag";
+        public static final String COLLUMN_ESTADO = "estado";
 
         //Criação da tabela
-        public static final String CREATE_TABLE = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT, %s TEXT, %s TIMESTAMP,%s TIMESTAMP)", TABLE_NAME, _ID, COLLUMN_TITULO, COLLUMN_DESCRICACAO, COLLUMN_GRAU, COLLUMN_DATALIMITE, COLLUMN_DATAATUAL);
+        public static final String CREATE_TABLE = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT, %s TEXT, %s TIMESTAMP,%s TIMESTAMP, %s TEXT)", TABLE_NAME, _ID, COLLUMN_TITULO, COLLUMN_DESCRICACAO, COLLUMN_GRAU, COLLUMN_DATALIMITE, COLLUMN_DATAATUAL, COLLUMN_ESTADO);
         //Deletar a tabela
         public static final String DROP_TABLE = String.format("DROP TABLE %s", TABLE_NAME);
     }

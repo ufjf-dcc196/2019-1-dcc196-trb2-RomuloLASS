@@ -5,6 +5,8 @@ public class Tarefas {
     private String titulo;
     private String descricao;
     private String grau;
+    private String dataHoraLimite;
+    private String dataHoraAtual;
 
     public Tarefas(){}
 

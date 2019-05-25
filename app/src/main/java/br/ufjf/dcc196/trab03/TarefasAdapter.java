@@ -43,23 +43,6 @@ public class TarefasAdapter extends RecyclerView.Adapter<TarefasAdapter.TarefasV
         cursor.moveToPosition(i);
         tarefasViewHolder.txtTitulo.setText(cursor.getString(idTitulo));
         tarefasViewHolder.txtGrau.setText(cursor.getString(idGrau));
-        /*
-        int idAno = cursor.getColumnIndex(PlanejamentosContract.Planejamentos.COLLUMN_ANO);
-        int idSemestre = cursor.getColumnIndex(PlanejamentosContract.Planejamentos.COLLUMN_SEMESTRE);
-        int idHoras = cursor.getColumnIndex(PlanejamentosContract.Planejamentos.COLLUMN_HORAS);
-        int idLinguas = cursor.getColumnIndex(PlanejamentosContract.Planejamentos.COLLUMN_LINGUAS);
-        int idHumanas = cursor.getColumnIndex(PlanejamentosContract.Planejamentos.COLLUMN_HUMANAS);
-        int idExatas = cursor.getColumnIndex(PlanejamentosContract.Planejamentos.COLLUMN_EXATAS);
-        int idSaude = cursor.getColumnIndex(PlanejamentosContract.Planejamentos.COLLUMN_SAUDE);
-        cursor.moveToPosition(position);
-        holder.txtAno.setText(cursor.getString(idAno));
-        holder.txtSemestre.setText(cursor.getString(idSemestre));
-        holder.txtHoras.setText(cursor.getString(idHoras));
-        holder.txtLinguas.setText(cursor.getString(idLinguas));
-        holder.txtHumanas.setText(cursor.getString(idHumanas));
-        holder.txtExatas.setText(cursor.getString(idExatas));
-        holder.txtSaude.setText(cursor.getString(idSaude));
-        */
     }
 
     @Override

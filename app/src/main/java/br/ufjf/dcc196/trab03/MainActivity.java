@@ -1,12 +1,14 @@
 package br.ufjf.dcc196.trab03;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,14 +21,14 @@ public class MainActivity extends AppCompatActivity {
         TarefasDBHelper helper = new TarefasDBHelper(getApplicationContext());
         SQLiteDatabase db = helper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
+        /*ContentValues values = new ContentValues();
         values.put(TarefasContract.Tarefas.COLLUMN_TITULO, "Trabalho");
         values.put(TarefasContract.Tarefas.COLLUMN_DESCRICACAO, "Trabalho de Lab Android");
         values.put(TarefasContract.Tarefas.COLLUMN_GRAU, "5");
         values.put(TarefasContract.Tarefas.COLLUMN_DATAATUAL, "2019-05-23 20:56");
         values.put(TarefasContract.Tarefas.COLLUMN_DATALIMITE, "2019-06-32 20:56");
 
-        db.insert(TarefasContract.Tarefas.TABLE_NAME, null, values);
+        db.insert(TarefasContract.Tarefas.TABLE_NAME, null, values);*/
 
         String[] campos = {
                 TarefasContract.Tarefas.COLLUMN_TITULO,
@@ -42,6 +44,14 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.rvTask);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NovaTarefaActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }

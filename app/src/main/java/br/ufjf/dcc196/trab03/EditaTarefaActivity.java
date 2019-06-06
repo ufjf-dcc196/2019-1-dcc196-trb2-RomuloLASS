@@ -34,6 +34,7 @@ public class EditaTarefaActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         final int posicao = (int) bundle.get("posicao");
+        String id = "";
 
         btnSubmit = findViewById(R.id.btnSubmit2);
         etTitle = findViewById(R.id.etEditTitle);
@@ -46,6 +47,7 @@ public class EditaTarefaActivity extends AppCompatActivity {
         final SQLiteDatabase db = helper.getWritableDatabase();
 
         final String[] campos = {
+                TarefasContract.Tarefas._ID,
                 TarefasContract.Tarefas.COLLUMN_TITULO,
                 TarefasContract.Tarefas.COLLUMN_DESCRICACAO,
                 TarefasContract.Tarefas.COLLUMN_GRAU,
@@ -53,6 +55,8 @@ public class EditaTarefaActivity extends AppCompatActivity {
                 TarefasContract.Tarefas.COLLUMN_DATALIMITE,
                 TarefasContract.Tarefas.COLLUMN_ESTADO,
         };
+
+
         final Cursor cursor = db.query(TarefasContract.Tarefas.TABLE_NAME, campos, null, null, null, null, null);
 
         int idTitulo = cursor.getColumnIndex(TarefasContract.Tarefas.COLLUMN_TITULO);
@@ -62,6 +66,10 @@ public class EditaTarefaActivity extends AppCompatActivity {
         int idDTAtual = cursor.getColumnIndex(TarefasContract.Tarefas.COLLUMN_DATAATUAL);
         int idDTLimite = cursor.getColumnIndex(TarefasContract.Tarefas.COLLUMN_DATALIMITE);
         cursor.moveToPosition(posicao);
+
+        int idID = cursor.getColumnIndex(TarefasContract.Tarefas._ID);
+
+        id = cursor.getString(idID);
 
         etTitle.setText(cursor.getString(idTitulo));
         etDescription.setText(cursor.getString(idDescricaco));
@@ -83,6 +91,10 @@ public class EditaTarefaActivity extends AppCompatActivity {
         final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         final Date date = new Date();
 
+        final String[] c = {
+            id
+        };
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +105,7 @@ public class EditaTarefaActivity extends AppCompatActivity {
                 valuesTask.put(TarefasContract.Tarefas.COLLUMN_ESTADO, String.valueOf(spinnerEstado.getSelectedItem()));
                 valuesTask.put(TarefasContract.Tarefas.COLLUMN_DATAATUAL, dateFormat.format(date));
                 valuesTask.put(TarefasContract.Tarefas.COLLUMN_DATALIMITE, dt);
-                db.update(TarefasContract.Tarefas.TABLE_NAME, valuesTask, TarefasContract.Tarefas._ID, campos);
+                db.update(TarefasContract.Tarefas.TABLE_NAME, valuesTask, "_id=?", c);
                 setResult(Activity.RESULT_OK);
                 finish();
             }

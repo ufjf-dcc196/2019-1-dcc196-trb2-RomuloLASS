@@ -1,5 +1,6 @@
 package br.ufjf.dcc196.trab03;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class TarefasActivity extends AppCompatActivity {
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class TarefasActivity extends AppCompatActivity {
         final SQLiteDatabase db = helper.getWritableDatabase();
 
         String[] campos = {
+                TarefasContract.Tarefas._ID,
                 TarefasContract.Tarefas.COLLUMN_TITULO,
                 TarefasContract.Tarefas.COLLUMN_DESCRICACAO,
                 TarefasContract.Tarefas.COLLUMN_GRAU,
@@ -48,8 +51,11 @@ public class TarefasActivity extends AppCompatActivity {
         int idEstado = cursor.getColumnIndex(TarefasContract.Tarefas.COLLUMN_ESTADO);
         int idDTAtual = cursor.getColumnIndex(TarefasContract.Tarefas.COLLUMN_DATAATUAL);
         int idDTLimite = cursor.getColumnIndex(TarefasContract.Tarefas.COLLUMN_DATALIMITE);
-        final int idId = cursor.getColumnIndex(TarefasContract.Tarefas._ID);
+
         cursor.moveToPosition(posicao);
+
+        int idID = cursor.getColumnIndex(TarefasContract.Tarefas._ID);
+        id = cursor.getString(idID);
 
         txtTitulo.setText(txtTitulo.getText() + cursor.getString(idTitulo));
         txtDescricao.setText(cursor.getString(idDescricaco));
@@ -59,13 +65,17 @@ public class TarefasActivity extends AppCompatActivity {
         txtDTLimite.setText(cursor.getString(idDTLimite));
 
 
+
+
+
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String id = cursor.getString(idId);
                 String select = TarefasContract.Tarefas._ID + "=?";
                 String[] selectArgs={id};
                 db.delete(TarefasContract.Tarefas.TABLE_NAME, select, selectArgs);
+                setResult(Activity.RESULT_OK);
+                finish();
             }
         });
 
@@ -75,6 +85,8 @@ public class TarefasActivity extends AppCompatActivity {
                 Intent intent = new Intent(TarefasActivity.this, EditaTarefaActivity.class);
                 intent.putExtra("posicao", posicao);
                 startActivity(intent);
+                setResult(Activity.RESULT_OK);
+                finish();
             }
         });
     }
